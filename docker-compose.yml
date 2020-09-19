@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:              # der Name web: ist willkuerlich gewaehlt
+    stdin_open: true  # vgl #75, ist ein react-fehler
+    build:          # normalerweise "build: .", ABER unser Dockerfile hat einen anderen Namen, naemlich: "Dockerfile.dev"
+      context: .    # . = aktuelles dir, hier koennte auch ein dir-Name im Verzeichnis angegeben werden
+      dockerfile: Dockerfile.dev  # Name d. zu benutzenden Dockerfiles
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app     # mappt aktuelles Verzeichnis "." auf "/app" im Container
